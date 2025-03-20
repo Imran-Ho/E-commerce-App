@@ -1,5 +1,7 @@
 import React from "react";
 import { CiSearch } from "react-icons/ci";
+import { RiUserFill } from "react-icons/ri";
+import { BsCart4 } from "react-icons/bs";
 import Logo from "./Logo";
 
 const Header = () => {
@@ -19,7 +21,26 @@ const Header = () => {
             <CiSearch />
           </div>
         </div>
-        <div>user icon and cart</div>
+        {/* User and Cart section */}
+        <div className="flex items-center gap-4">
+          <div className="text-3xl cursor-pointer">
+            <RiUserFill />
+          </div>
+          <div className="text-3xl relative">
+            <span>
+              <BsCart4 />
+            </span>
+            <div className="absolute -top-1 -right-1 bg-red-600 text-white flex items-center justify-center w-5 h-5 rounded-full">
+              <p className="text-xs">0</p>
+            </div>
+          </div>
+          {/* Login and Logout section */}
+          <div>
+            <button className="bg-blue-600 text-white rounded-full px-4 py-1 hover:bg-blue-500">
+              Login
+            </button>
+          </div>
+        </div>
       </div>
     </header>
   );
