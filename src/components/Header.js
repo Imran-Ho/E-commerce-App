@@ -3,14 +3,15 @@ import { CiSearch } from "react-icons/ci";
 import { RiUserFill } from "react-icons/ri";
 import { BsCart4 } from "react-icons/bs";
 import Logo from "./Logo";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="h-16 shadow-md">
+    <header className="h-16 shadow-md bg-white">
       <div className="h-full container flex items-center mx-auto px-4 justify-between">
-        <div>
+        <Link to="/">
           <Logo h={200} w={100}></Logo>
-        </div>
+        </Link>
         <div className=" hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow-md pl-2 ">
           <input
             className="w-full outline-none"
@@ -36,9 +37,12 @@ const Header = () => {
           </div>
           {/* Login and Logout section */}
           <div>
-            <button className="bg-blue-600 text-white rounded-full px-4 py-1 hover:bg-blue-500">
+            <Link
+              to="/login"
+              className="bg-blue-600 text-white rounded-full px-4 py-1 hover:bg-blue-500"
+            >
               Login
-            </button>
+            </Link>
           </div>
         </div>
       </div>
