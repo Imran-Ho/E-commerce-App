@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import SignUpImg from "../assest/login.gif";
+import SignUpImgIcon from "../assest/login.gif";
 import { FaEyeSlash, FaRegEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import imageToBase64 from "../hooks/imageToBase64";
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -19,17 +20,42 @@ const SignUpPage = () => {
     const user = { name, email, password, confirmPassword };
     setUserData(user);
   };
+  // handle User Picture upload
+  const handleUserPicUpdate = async (e) => {
+    const file = e.target.files[0];
+    const uploadImg = await imageToBase64(file);
+    console.log("updated Image", uploadImg);
+    setUserData((previousData) => {
+      return {
+        ...previousData,
+        profilePic: uploadImg,
+      };
+    });
+  };
   return (
     <section id="signUp">
       <div className="bg-slate-500 mx-auto p-4 my-2 container ">
         <div className="bg-white px-4 py-5 w-full max-w-md mx-auto rounded-lg  ">
           <div className="w-40 h-40 mx-auto relative overflow-hidden rounded-full">
             <div>
-              <img src={SignUpImg} alt="signUp Icon" />
+              <img
+                src={userData.profilePic || SignUpImgIcon}
+                alt="signUp Icon"
+              />
             </div>
-            <div className="bg-opacity-50 text-md pb-4 pt-2 cursor-pointer text-center bg-slate-400 absolute bottom-0 w-full">
-              Upload Photo
-            </div>
+            {/* image upload section */}
+            <form>
+              <label>
+                <div className="bg-opacity-50 text-md pb-4 pt-2 cursor-pointer text-center bg-slate-400 absolute bottom-0 w-full">
+                  Upload Photo
+                </div>
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={handleUserPicUpdate}
+                />
+              </label>
+            </form>
           </div>
           {/* form section */}
 
